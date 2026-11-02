@@ -608,3 +608,670 @@ h1, h2, h3 { font-family: "Manrope", sans-serif; }
         margin-block: 20px 18px;
     }
 }
+
+/* ==========================================================================
+   Halaman Detail Menu (detailMenu.html)
+   ========================================================================== */
+
+.detail-top-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-block: 26px 18px;
+}
+
+.detail-top-bar .breadcrumb {
+    margin-bottom: 0;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    transition: transform .2s ease;
+}
+
+.back-link:hover {
+    transform: translateX(-3px);
+}
+
+.detail-section {
+    display: grid;
+    grid-template-columns: .95fr 1.05fr;
+    align-items: start;
+    gap: 52px;
+    padding-block: 10px 72px;
+}
+
+/* Galeri Gambar Produk */
+.detail-gallery {
+    position: sticky;
+    top: 102px;
+    display: grid;
+    gap: 14px;
+}
+
+.detail-main-image {
+    position: relative;
+    height: 430px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    background: var(--surface-soft);
+}
+
+.detail-main-image > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity .25s ease, transform .4s ease;
+}
+
+.detail-fav-btn {
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+}
+
+.detail-main-image .product-tag {
+    top: 16px;
+    left: 16px;
+    padding: 6px 12px;
+    font-size: 10px;
+}
+
+.note-prep {
+    bottom: 16px;
+    left: 16px;
+}
+
+.detail-thumbnails {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.thumb-button {
+    height: 88px;
+    padding: 0;
+    overflow: hidden;
+    border: 2px solid transparent;
+    border-radius: 14px;
+    background: var(--surface);
+    cursor: pointer;
+    opacity: .65;
+    transition: opacity .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.thumb-button:hover {
+    opacity: .9;
+    transform: translateY(-2px);
+}
+
+.thumb-button.active {
+    border-color: var(--orange);
+    opacity: 1;
+}
+
+.thumb-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Kolom Info & Kustomisasi */
+.detail-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.category-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 99px;
+    background: color-mix(in srgb, var(--green) 12%, var(--surface));
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.detail-rating-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+}
+
+.detail-rating-pill i {
+    color: #e4a834;
+}
+
+.detail-rating-pill span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.detail-title {
+    margin-bottom: 14px;
+    font-size: clamp(32px, 3.6vw, 44px);
+    line-height: 1.12;
+    letter-spacing: -1.8px;
+}
+
+.detail-title span {
+    color: var(--orange);
+}
+
+.detail-price-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.detail-price {
+    color: var(--green);
+    font: 800 26px/1 "Manrope", sans-serif;
+    letter-spacing: -1px;
+}
+
+.price-Cross {
+    color: var(--muted);
+    font-size: 14px;
+    text-decoration: line-through;
+}
+
+.promo-pill {
+    padding: 4px 10px;
+    border-radius: 99px;
+    background: #fff0e8;
+    color: #df7747;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.detail-description {
+    margin-bottom: 22px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.dish-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 26px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface);
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.highlight-item > i {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    place-items: center;
+    border-radius: 10px;
+    background: var(--surface-soft);
+    color: var(--orange);
+    font-size: 14px;
+}
+
+.highlight-item small {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.2;
+}
+
+.highlight-item strong {
+    font-size: 12px;
+}
+
+/* Form Opsi & Topping */
+.customize-form {
+    display: grid;
+    gap: 22px;
+}
+
+.option-group {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.option-group legend,
+.option-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+    font: 800 13px "Manrope", sans-serif;
+}
+
+.required-badge,
+.optional-badge {
+    padding: 3px 8px;
+    border-radius: 99px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.required-badge {
+    background: color-mix(in srgb, var(--orange) 16%, var(--surface));
+    color: var(--orange);
+}
+
+.optional-badge {
+    background: var(--surface-soft);
+    color: var(--muted);
+}
+
+.option-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.option-chip input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.option-chip span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 15px;
+    border: 1px solid var(--line);
+    border-radius: 99px;
+    background: var(--surface);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.option-chip input:checked + span {
+    border-color: var(--green);
+    background: var(--green);
+    color: #fff;
+}
+
+.addon-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.addon-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 13px;
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    background: var(--surface);
+    cursor: pointer;
+    transition: border-color .2s ease, background .2s ease;
+}
+
+.addon-card:hover {
+    border-color: var(--orange);
+}
+
+.addon-card input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.addon-check {
+    display: grid;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--page);
+    color: transparent;
+    font-size: 10px;
+    transition: all .2s ease;
+}
+
+.addon-card input:checked ~ .addon-check {
+    border-color: var(--orange);
+    background: var(--orange);
+    color: #fff;
+}
+
+.addon-text {
+    display: grid;
+    line-height: 1.3;
+}
+
+.addon-text strong {
+    font-size: 12px;
+}
+
+.addon-text small {
+    color: var(--orange);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.note-input {
+    width: 100%;
+    padding: 11px 15px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 12px;
+    outline: none;
+    transition: border-color .2s ease;
+}
+
+.note-input:focus {
+    border-color: var(--green);
+}
+
+/* Bar Kuantitas & Tombol Beli */
+.purchase-bar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 8px;
+}
+
+.qty-control {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid var(--line);
+    border-radius: 99px;
+    background: var(--surface);
+}
+
+.qty-btn {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: var(--surface-soft);
+    color: var(--ink);
+    cursor: pointer;
+    font-size: 11px;
+    transition: background .2s ease, color .2s ease;
+}
+
+.qty-btn:hover {
+    background: var(--green);
+    color: #fff;
+}
+
+.qty-control input {
+    width: 40px;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    font: 800 14px "Manrope", sans-serif;
+    text-align: center;
+    outline: none;
+}
+
+.buy-submit-btn {
+    flex: 1;
+    min-height: 48px;
+    font-size: 13px;
+}
+
+/* Tab Informasi & Ulasan */
+.detail-tabs-section {
+    padding-block: 10px 76px;
+}
+
+.tabs-header {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 26px;
+    border-bottom: 1px solid var(--line);
+}
+
+.tab-btn {
+    position: relative;
+    padding: 12px 4px;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font: 800 14px "Manrope", sans-serif;
+    cursor: pointer;
+    transition: color .2s ease;
+}
+
+.tab-btn.active {
+    color: var(--green);
+}
+
+.tab-btn.active::after {
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    height: 3px;
+    border-radius: 99px;
+    background: var(--orange);
+    content: "";
+}
+
+.tab-panel[hidden] {
+    display: none;
+}
+
+.info-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.info-card {
+    padding: 26px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface);
+}
+
+.info-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.info-card h3 i {
+    color: var(--orange);
+}
+
+.info-card > p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.ingredient-list {
+    display: grid;
+    gap: 9px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+}
+
+.ingredient-list li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.ingredient-list i {
+    color: var(--green);
+    font-size: 11px;
+}
+
+.nutrition-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-block: 16px;
+}
+
+.nutrition-box {
+    padding: 12px 10px;
+    border-radius: 12px;
+    background: var(--surface-soft);
+    text-align: center;
+}
+
+.nutrition-box strong {
+    display: block;
+    color: var(--green);
+    font: 800 15px "Manrope", sans-serif;
+}
+
+.nutrition-box span {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.allergy-note {
+    margin: 0;
+    padding: 10px 13px;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--orange) 10%, var(--surface));
+    font-size: 11px;
+}
+
+.allergy-note i {
+    color: var(--orange);
+    margin-right: 4px;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.review-item-card {
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface);
+}
+
+.review-item-top {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.review-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.review-user img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.review-user strong {
+    display: block;
+    font-size: 12px;
+}
+
+.review-user small {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.review-item-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.75;
+}
+
+.related-section {
+    padding-bottom: 90px;
+}
+
+@media (max-width: 960px) {
+    .detail-section {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    .detail-gallery {
+        position: static;
+    }
+    .info-columns,
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    .detail-main-image {
+        height: 310px;
+    }
+    .dish-highlights {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .addon-grid {
+        grid-template-columns: 1fr;
+    }
+    .purchase-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .qty-control {
+        justify-content: space-between;
+    }
+    .nutrition-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

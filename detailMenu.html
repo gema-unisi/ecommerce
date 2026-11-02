@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8f6f1">
+    <meta name="description" content="Detail menu Nasi Ayam Bakar Madu di TasteHub. Pilih level pedas, tambahan topping, dan pesan langsung dengan pengiriman cepat.">
+    <title>Nasi Ayam Bakar Madu — TasteHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html" aria-label="TasteHub, ke beranda">
+                <span class="brand-mark"><i class="fa-solid fa-utensils" aria-hidden="true"></i></span>
+                <span>Taste<span class="brand-accent">Hub</span></span>
+            </a>
+
+            <nav class="desktop-nav" aria-label="Navigasi utama">
+                <a class="nav-link" href="index.html">Beranda</a>
+                <a class="nav-link active" href="menu.html">Menu</a>
+                <a class="nav-link" href="index.html#keunggulan">Tentang kami</a>
+                <a class="nav-link" href="index.html#ulasan">Ulasan</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-button theme-toggle" type="button" aria-label="Aktifkan tema gelap">
+                    <i class="fa-regular fa-moon" aria-hidden="true"></i>
+                </button>
+                <button class="cart-button" type="button" aria-label="Keranjang, 0 item">
+                    <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+                    <span class="cart-label">Keranjang</span>
+                    <span class="cart-count" aria-live="polite">0</span>
+                </button>
+                <a class="button button-dark header-cta" href="menu.html">Lihat katalog <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+
+            <button class="mobile-menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="mobile-menu">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav" id="mobile-menu" aria-label="Navigasi mobile" hidden>
+            <a href="index.html">Beranda</a>
+            <a href="menu.html">Menu</a>
+            <a href="index.html#keunggulan">Tentang kami</a>
+            <a href="index.html#ulasan">Ulasan</a>
+            <a href="menu.html">Lihat katalog <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Breadcrumb Navigasi -->
+        <div class="detail-top-bar section-shell">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html">Beranda</a>
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                <a href="menu.html">Daftar Menu</a>
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                <span aria-current="page">Nasi Ayam Bakar Madu</span>
+            </nav>
+            <a class="back-link" href="menu.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Kembali ke menu</a>
+        </div>
+
+        <!-- Seksi Utama Detail Produk -->
+        <section class="detail-section section-shell" id="detail-product" data-base-price="32000" data-product-name="Nasi Ayam Bakar Madu">
+            <!-- Kolom Kiri: Galeri Visual -->
+            <div class="detail-gallery">
+                <div class="detail-main-image">
+                    <img id="main-dish-image" src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=1000&h=820&fit=crop" alt="Nasi ayam bakar madu dengan sambal dan lalapan segar">
+                    <span class="product-tag">Terlaris</span>
+                    <button class="favorite-button detail-fav-btn" type="button" aria-label="Tambahkan Nasi Ayam Bakar Madu ke favorit" aria-pressed="false">
+                        <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                    </button>
+                    <div class="floating-note note-prep">
+                        <span class="note-icon"><i class="fa-solid fa-fire-burner" aria-hidden="true"></i></span>
+                        <span><strong>Dimasak dadakan</strong><small>Hangat saat tiba</small></span>
+                    </div>
+                </div>
+
+                <div class="detail-thumbnails" role="group" aria-label="Galeri foto hidangan">
+                    <button class="thumb-button active" type="button" data-image="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=1000&h=820&fit=crop" data-alt="Nasi ayam bakar madu tampak atas dengan lalapan">
+                        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=240&h=180&fit=crop" alt="Tampilan utama">
+                    </button>
+                    <button class="thumb-button" type="button" data-image="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1000&h=820&fit=crop" data-alt="Detail panggangan ayam bumbu madu karamel">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=240&h=180&fit=crop" alt="Detail tekstur ayam">
+                    </button>
+                    <button class="thumb-button" type="button" data-image="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=1000&h=820&fit=crop" data-alt="Paket lengkap dengan sambal terasi dan tahu tempe">
+                        <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=240&h=180&fit=crop" alt="Sajian pendamping">
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kolom Kanan: Informasi & Kustomisasi Pesanan -->
+            <div class="detail-info">
+                <div class="detail-meta-row">
+                    <span class="category-badge"><i class="fa-solid fa-utensils" aria-hidden="true"></i> Nusantara</span>
+                    <div class="detail-rating-pill">
+                        <i class="fa-solid fa-star" aria-hidden="true"></i>
+                        <strong>4.9</strong>
+                        <span>(320+ ulasan)</span>
+                    </div>
+                </div>
+
+                <h1 class="detail-title">Nasi Ayam Bakar <span>Madu.</span></h1>
+                <div class="detail-price-box">
+                    <strong class="detail-price" id="unit-price-display">Rp 32.000</strong>
+                    <span class="price-Cross">Rp 38.000</span>
+                    <span class="promo-pill">Hemat 15%</span>
+                </div>
+
+                <p class="detail-description">
+                    Potongan ayam kampung pilihan yang dimarinasi selama 6 jam dengan rempah nusantara dan madu hutan murni, lalu dipanggang hingga terkaramelisasi sempurna. Disajikan bersama nasi putih pulen hangat, tahu & tempe goreng, lalapan segar, serta sambal terasi racikan khas TasteHub.
+                </p>
+
+                <!-- Info Cepat Hidangan -->
+                <div class="dish-highlights">
+                    <div class="highlight-item">
+                        <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                        <div>
+                            <small>Estimasi tiba</small>
+                            <strong>20–25 Menit</strong>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i>
+                        <div>
+                            <small>Kalori</small>
+                            <strong>540 kkal</strong>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fa-solid fa-award" aria-hidden="true"></i>
+                        <div>
+                            <small>Kualitas</small>
+                            <strong>100% Halal & Segar</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Kustomisasi Pesanan -->
+                <form class="customize-form" id="customize-dish-form">
+                    <!-- Pilihan Level Pedas -->
+                    <fieldset class="option-group">
+                        <legend>Pilih Level Sambal <span class="required-badge">Wajib</span></legend>
+                        <div class="option-chips">
+                            <label class="option-chip">
+                                <input type="radio" name="spice" value="Tidak Pedas" checked>
+                                <span>Tidak Pedas</span>
+                            </label>
+                            <label class="option-chip">
+                                <input type="radio" name="spice" value="Sedang">
+                                <span>Sedang <i class="fa-solid fa-pepper-hot" aria-hidden="true"></i></span>
+                            </label>
+                            <label class="option-chip">
+                                <input type="radio" name="spice" value="Pedas Juara">
+                                <span>Pedas Juara <i class="fa-solid fa-fire" aria-hidden="true"></i></span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Pilihan Tambahan / Topping -->
+                    <fieldset class="option-group">
+                        <legend>Tambahan Pelengkap <span class="optional-badge">Opsional</span></legend>
+                        <div class="addon-grid">
+                            <label class="addon-card">
+                                <input type="checkbox" name="addon" value="Telur Dadar Crispy" data-addon-price="6000">
+                                <span class="addon-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+                                <span class="addon-text">
+                                    <strong>Telur Dadar Crispy</strong>
+                                    <small>+Rp 6.000</small>
+                                </span>
+                            </label>
+                            <label class="addon-card">
+                                <input type="checkbox" name="addon" value="Ekstra Sambal Madu" data-addon-price="4000">
+                                <span class="addon-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+                                <span class="addon-text">
+                                    <strong>Ekstra Sambal Terasi</strong>
+                                    <small>+Rp 4.000</small>
+                                </span>
+                            </label>
+                            <label class="addon-card">
+                                <input type="checkbox" name="addon" value="Nasi Uduk Wangi" data-addon-price="5000">
+                                <span class="addon-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+                                <span class="addon-text">
+                                    <strong>Upgrade Nasi Uduk</strong>
+                                    <small>+Rp 5.000</small>
+                                </span>
+                            </label>
+                            <label class="addon-card">
+                                <input type="checkbox" name="addon" value="Es Teh Manis Segar" data-addon-price="8000">
+                                <span class="addon-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+                                <span class="addon-text">
+                                    <strong>Paket Es Teh Manis</strong>
+                                    <small>+Rp 8.000</small>
+                                </span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Catatan Khusus -->
+                    <div class="option-group">
+                        <label class="option-label" for="order-notes">Catatan untuk Dapur <span class="optional-badge">Opsional</span></label>
+                        <input class="note-input" id="order-notes" type="text" placeholder="Contoh: Bagian dada, sambal dipisah, tanpa timun...">
+                    </div>
+
+                    <!-- Bar Aksi Pembelian -->
+                    <div class="purchase-bar">
+                        <div class="qty-control" aria-label="Atur jumlah porsi">
+                            <button class="qty-btn" id="qty-minus" type="button" aria-label="Kurangi jumlah"><i class="fa-solid fa-minus" aria-hidden="true"></i></button>
+                            <input id="dish-qty" type="number" value="1" min="1" max="20" readonly aria-label="Jumlah porsi">
+                            <button class="qty-btn" id="qty-plus" type="button" aria-label="Tambah jumlah"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
+                        </div>
+
+                        <button class="button button-primary buy-submit-btn" type="submit">
+                            <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+                            <span>Tambah ke Keranjang — <strong id="total-price-display">Rp 32.000</strong></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Tab Informasi Komposisi & Ulasan Pelanggan -->
+        <section class="detail-tabs-section section-shell">
+            <div class="tabs-header" role="tablist" aria-label="Informasi tambahan produk">
+                <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-ingredients" id="tab-ingredients" type="button">Komposisi & Nutrisi</button>
+                <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-reviews" id="tab-reviews" type="button">Ulasan Pelanggan (320)</button>
+            </div>
+
+            <!-- Panel 1: Komposisi & Nutrisi -->
+            <div class="tab-panel" id="panel-ingredients" role="tabpanel" aria-labelledby="tab-ingredients">
+                <div class="info-columns">
+                    <div class="info-card">
+                        <h3><i class="fa-solid fa-seedling" aria-hidden="true"></i> Bahan Pilihan Utama</h3>
+                        <p>Kami memastikan setiap bahan dipasok segar setiap pagi dari petani dan peternak lokal mitra TasteHub.</p>
+                        <ul class="ingredient-list">
+                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Ayam kampung segar bebas hormon (1 potong besar)</li>
+                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Madu hutan murni & kecap manis organik</li>
+                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Beras pandan wangi pulen pilihan</li>
+                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Cabai rawit merah, tomat segar & terasi udang panggang</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3><i class="fa-solid fa-chart-pie" aria-hidden="true"></i> Informasi Nilai Gizi (Per Porsi)</h3>
+                        <div class="nutrition-grid">
+                            <div class="nutrition-box">
+                                <strong>540 kkal</strong>
+                                <span>Energi Total</span>
+                            </div>
+                            <div class="nutrition-box">
+                                <strong>38g</strong>
+                                <span>Protein</span>
+                            </div>
+                            <div class="nutrition-box">
+                                <strong>56g</strong>
+                                <span>Karbohidrat</span>
+                            </div>
+                            <div class="nutrition-box">
+                                <strong>16g</strong>
+                                <span>Lemak</span>
+                            </div>
+                        </div>
+                        <p class="allergy-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <strong>Info Alergen:</strong> Mengandung kedelai (kecap/tempe) dan udang (pada sambal terasi).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 2: Ulasan Pelanggan -->
+            <div class="tab-panel" id="panel-reviews" role="tabpanel" aria-labelledby="tab-reviews" hidden>
+                <div class="reviews-grid">
+                    <article class="review-item-card">
+                        <div class="review-item-top">
+                            <div class="review-user">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces" alt="Nadia Putri" loading="lazy">
+                                <div>
+                                    <strong>Nadia Putri</strong>
+                                    <small>2 hari yang lalu • Level Sedang</small>
+                                </div>
+                            </div>
+                            <span class="product-rating"><i class="fa-solid fa-star" aria-hidden="true"></i> 5.0</span>
+                        </div>
+                        <p>“Bumbu madunya meresap sampai ke dalam daging, bukan cuma di kulit luarnya saja. Sambal terasinya juga segar banget!”</p>
+                    </article>
+
+                    <article class="review-item-card">
+                        <div class="review-item-top">
+                            <div class="review-user">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=faces" alt="Raka Pratama" loading="lazy">
+                                <div>
+                                    <strong>Raka Pratama</strong>
+                                    <small>5 hari yang lalu • Pedas Juara</small>
+                                </div>
+                            </div>
+                            <span class="product-rating"><i class="fa-solid fa-star" aria-hidden="true"></i> 4.9</span>
+                        </div>
+                        <p>“Porsinya mengenyangkan, ditambah upgrade nasi uduk dan telur dadar crispy jadi makin mantap buat makan siang di kantor.”</p>
+                    </article>
+
+                    <article class="review-item-card">
+                        <div class="review-item-top">
+                            <div class="review-user">
+                                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&h=100&fit=crop&crop=faces" alt="Sinta Maharani" loading="lazy">
+                                <div>
+                                    <strong>Sinta Maharani</strong>
+                                    <small>1 minggu yang lalu • Tidak Pedas</small>
+                                </div>
+                            </div>
+                            <span class="product-rating"><i class="fa-solid fa-star" aria-hidden="true"></i> 5.0</span>
+                        </div>
+                        <p>“Anak-anak di rumah suka banget karena pilih opsi tidak pedas dan rasa manis madunya pas. Pengiriman juga masih hangat.”</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rekomendasi Menu Pelengkap -->
+        <section class="related-section section-shell">
+            <div class="section-heading">
+                <div>
+                    <p class="section-kicker">COCOK DINIKMATI BERSAMA</p>
+                    <h2>Pasangan pas biar <span>makin lengkap.</span></h2>
+                </div>
+                <a class="text-link" href="menu.html">Lihat semua menu <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="product-grid">
+                <article class="product-card" data-category="indonesia">
+                    <div class="product-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=700&h=520&fit=crop" alt="Sate Ayam Madura" loading="lazy">
+                        <button class="favorite-button" type="button" aria-label="Tambahkan Sate Ayam Madura ke favorit" aria-pressed="false"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-title-row"><h3>Sate Ayam Madura</h3><span class="product-rating"><i class="fa-solid fa-star" aria-hidden="true"></i> 4.9</span></div>
+                        <p>10 tusuk sate daging empuk, bumbu kacang</p>
+                        <div class="product-bottom"><strong>Rp 30.000</strong><button class="add-button" type="button" aria-label="Tambah Sate Ayam Madura ke keranjang"><i class="fa-solid fa-plus" aria-hidden="true"></i></button></div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="snack">
+                    <div class="product-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=700&h=520&fit=crop" alt="Truffle Parmesan Fries" loading="lazy">
+                        <button class="favorite-button" type="button" aria-label="Tambahkan Truffle Parmesan Fries ke favorit" aria-pressed="false"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-title-row"><h3>Truffle Parmesan Fries</h3><span class="product-rating"><i class="fa-solid fa-star" aria-hidden="true"></i> 4.7</span></div>
+                        <p>Kentang goreng renyah & saus garlic mayo</p>
+                        <div class="product-bottom"><strong>Rp 24.000</strong><button class="add-button" type="button" aria-label="Tambah Truffle Parmesan Fries ke keranjang"><i class="fa-solid fa-plus" aria-hidden="true"></i></button></div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="dessert">
+                    <div class="product-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=700&h=520&fit=crop" alt="Es Kopi Gula Aren" loading="lazy">
+                        <span class="product-tag">Segar</span>
+                        <button class="favorite-button" type="button" aria-label="Tambahkan Es Kopi Gula Aren ke favorit" aria-pressed="false"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-title-row"><h3>Es Kopi Gula Aren</h3><span class="product-rating"><i class="fa-solid fa-star" aria-hidden="true"></i> 4.9</span></div>
+                        <p>Espresso arabika, susu segar & gula aren</p>
+                        <div class="product-bottom"><strong>Rp 22.000</strong><button class="add-button" type="button" aria-label="Tambah Es Kopi Gula Aren ke keranjang"><i class="fa-solid fa-plus" aria-hidden="true"></i></button></div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="dessert">
+                    <div class="product-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=700&h=520&fit=crop" alt="Chocolate Lava Cake" loading="lazy">
+                        <button class="favorite-button" type="button" aria-label="Tambahkan Chocolate Lava Cake ke favorit" aria-pressed="false"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-title-row"><h3>Chocolate Lava Cake</h3><span class="product-rating"><i class="fa-solid fa-star" aria-hidden="true"></i> 5.0</span></div>
+                        <p>Cokelat lumer untuk penutup manis</p>
+                        <div class="product-bottom"><strong>Rp 26.000</strong><button class="add-button" type="button" aria-label="Tambah Chocolate Lava Cake ke keranjang"><i class="fa-solid fa-plus" aria-hidden="true"></i></button></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-main section-shell">
+            <div class="footer-brand-column">
+                <a class="brand footer-brand" href="index.html">
+                    <span class="brand-mark"><i class="fa-solid fa-utensils" aria-hidden="true"></i></span>
+                    <span>Taste<span class="brand-accent">Hub</span></span>
+                </a>
+                <p>Menghadirkan makanan enak dan momen bahagia, langsung ke depan pintumu.</p>
+                <div class="social-links">
+                    <a href="index.html" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="index.html" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="index.html" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Jelajahi</h3>
+                <a href="menu.html">Menu kami</a>
+                <a href="index.html#keunggulan">Tentang TasteHub</a>
+                <a href="index.html#ulasan">Ulasan pelanggan</a>
+            </div>
+            <div class="footer-column">
+                <h3>Bantuan</h3>
+                <a href="index.html">Cara pemesanan</a>
+                <a href="index.html">FAQ</a>
+                <a href="index.html">Hubungi kami</a>
+            </div>
+            <div class="footer-column newsletter-column">
+                <h3>Info yang bikin happy</h3>
+                <p>Promo dan menu baru, langsung di inbox kamu.</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <label class="sr-only" for="newsletter-email">Alamat email</label>
+                    <input id="newsletter-email" type="email" placeholder="Email kamu" required>
+                    <button type="submit" aria-label="Daftar newsletter"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom section-shell">
+            <span>© 2024 TasteHub. Dibuat dengan <i class="fa-solid fa-heart" aria-hidden="true"></i> untuk kamu.</span>
+            <span>Rasa bahagia, setiap hari.</span>
+        </div>
+    </footer>
+
+    <div class="toast-message" id="toast-message" role="status" aria-live="polite"></div>
+    <script src="js/script.js"></script>
+</body>
+</html>

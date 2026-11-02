@@ -207,4 +207,115 @@ document.addEventListener("DOMContentLoaded", () => {
             showToast("Terima kasih! Kamu akan menerima kabar seru dari TasteHub.");
         });
     }
+
+    // =========================================================================
+    // Logika Halaman Detail Menu (detailMenu.html)
+    // =========================================================================
+    const detailSection = document.getElementById("detail-product");
+
+    if (detailSection) {
+        const basePrice = Number(detailSection.dataset.basePrice || 32000);
+        const productName = detailSection.dataset.productName || "Menu Pilihan";
+        const mainImage = document.getElementById("main-dish-image");
+        const thumbButtons = document.querySelectorAll(".thumb-button");
+        const qtyInput = document.getElementById("dish-qty");
+        const qtyMinus = document.getElementById("qty-minus");
+        const qtyPlus = document.getElementById("qty-plus");
+        const addonCheckboxes = document.querySelectorAll('input[name="addon"]');
+        const totalPriceDisplay = document.getElementById("total-price-display");
+        const customizeForm = document.getElementById("customize-dish-form");
+
+        const formatRupiah = (amount) => {
+            return "Rp " + amount.toLocaleString("id-ID");
+        };
+
+        const calculateTotal = () => {
+            const quantity = Number(qtyInput.value || 1);
+            let addonTotal = 0;
+
+            addonCheckboxes.forEach((box) => {
+                if (box.checked) {
+                    addonTotal += Number(box.dataset.addonPrice || 0);
+                }
+            });
+
+            const grandTotal = (basePrice + addonTotal) * quantity;
+            if (totalPriceDisplay) {
+                totalPriceDisplay.textContent = formatRupiah(grandTotal);
+            }
+        };
+
+        // Ganti Foto Utama dari Thumbnail
+        thumbButtons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                thumbButtons.forEach((b) => b.classList.remove("active"));
+                btn.classList.add("active");
+                if (mainImage) {
+                    mainImage.src = btn.dataset.image;
+                    mainImage.alt = btn.dataset.alt || productName;
+                }
+            });
+        });
+
+        // Tombol Kurang & Tambah Porsi
+        if (qtyMinus && qtyPlus && qtyInput) {
+            qtyMinus.addEventListener("click", () => {
+                const current = Number(qtyInput.value);
+                if (current > 1) {
+                    qtyInput.value = String(current - 1);
+                    calculateTotal();
+                }
+            });
+
+            qtyPlus.addEventListener("click", () => {
+                const current = Number(qtyInput.value);
+                if (current < 20) {
+                    qtyInput.value = String(current + 1);
+                    calculateTotal();
+                }
+            });
+        }
+
+        // Hitung Ulang Saat Topping Dicentang
+        addonCheckboxes.forEach((box) => {
+            box.addEventListener("change", calculateTotal);
+        });
+
+        // Submit Form Kustomisasi ke Keranjang
+        if (customizeForm) {
+            customizeForm.addEventListener("submit", (event) => {
+                event.preventDefault();
+                const quantity = Number(qtyInput.value || 1);
+                const selectedSpice = customizeForm.querySelector('input[name="spice"]:checked')?.value || "Normal";
+
+                itemCount += quantity;
+                localStorage.setItem("tastehub-cart-count", String(itemCount));
+
+                if (cartCount) cartCount.textContent = String(itemCount);
+                if (cartButton) cartButton.setAttribute("aria-label", `Keranjang, ${itemCount} item`);
+
+                showToast(`${quantity}x ${productName} (${selectedSpice}) berhasil masuk keranjang!`);
+            });
+        }
+
+        // Navigasi Tab Komposisi & Ulasan
+        const tabButtons = document.querySelectorAll(".tab-btn");
+        const tabPanels = document.querySelectorAll(".tab-panel");
+
+        tabButtons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const targetId = btn.getAttribute("aria-controls");
+
+                tabButtons.forEach((b) => {
+                    const isSelected = b === btn;
+                    b.classList.toggle("active", isSelected);
+                    b.setAttribute("aria-selected", String(isSelected));
+                });
+
+                tabPanels.forEach((panel) => {
+                    panel.hidden = panel.id !== targetId;
+                });
+            });
+        });
+    }
 });
