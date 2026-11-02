@@ -318,4 +318,30 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+
+    // =========================================================================
+    // Logika Accordion FAQ pada Halaman Tentang Kami (about.html)
+    // =========================================================================
+    const faqQuestions = document.querySelectorAll(".faq-question");
+
+    faqQuestions.forEach((questionBtn) => {
+        questionBtn.addEventListener("click", () => {
+            const isExpanded = questionBtn.getAttribute("aria-expanded") === "true";
+            const answerPanel = questionBtn.nextElementSibling;
+
+            // Tutup FAQ lain agar tetap rapi
+            faqQuestions.forEach((otherBtn) => {
+                otherBtn.setAttribute("aria-expanded", "false");
+                if (otherBtn.nextElementSibling) {
+                    otherBtn.nextElementSibling.hidden = true;
+                }
+            });
+
+            // Buka/tutup FAQ yang diklik
+            questionBtn.setAttribute("aria-expanded", String(!isExpanded));
+            if (answerPanel) {
+                answerPanel.hidden = isExpanded;
+            }
+        });
+    });
 });
