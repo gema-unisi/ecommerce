@@ -18,14 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const newsletterForm = document.getElementById("newsletter-form");
 
     let activeCategory = "all";
-    let itemCount = Number(localStorage.getItem("tastehub-cart-count") || 0);
+    const cartStorageKey = "tastehub-cart";
+    let cartItems = [];
     let toastTimer;
-
-    // Sinkronisasi keranjang antar halaman
-    if (cartCount && cartButton) {
-        cartCount.textContent = String(itemCount);
-        cartButton.setAttribute("aria-label", `Keranjang, ${itemCount} item`);
-    }
 
     // Pengaturan Tema Gelap / Terang
     const savedTheme = localStorage.getItem("tastehub-theme");
@@ -59,6 +54,176 @@ document.addEventListener("DOMContentLoaded", () => {
         window.clearTimeout(toastTimer);
         toastTimer = window.setTimeout(() => toast.classList.remove("visible"), 2600);
     };
+
+    const getItemCount = () => cartItems.reduce((total, item) => total + item.quantity, 0);
+
+    const updateCartBadge = () => {
+        const itemCount = getItemCount();
+        if (cartCount) cartCount.textContent = String(itemCount);
+        if (cartButton) cartButton.setAttribute("aria-label", `Keranjang, ${itemCount} item`);
+    };
+
+    const loadCart = () => {
+        try {
+            const storedCart = localStorage.getItem(cartStorageKey);
+            if (!storedCart) {
+                localStorage.removeItem("tastehub-cart-count");
+                return [];
+            }
+
+            const parsedCart = JSON.parse(storedCart);
+            if (!Array.isArray(parsedCart)) throw new TypeError("Format keranjang bukan array.");
+
+            return parsedCart.filter((item) => {
+                const isValid = item && typeof item.id === "string" &&
+                    typeof item.name === "string" && Number.isFinite(item.price) &&
+                    Number.isInteger(item.quantity) && item.quantity > 0;
+                if (!isValid) console.warn("Item keranjang yang tidak valid dilewati.", item);
+                return isValid;
+            });
+        } catch (error) {
+            console.error("Gagal membaca keranjang dari localStorage.", error);
+            showToast("Keranjang tidak dapat dibaca. Coba muat ulang halaman.");
+            return [];
+        }
+    };
+
+    const renderCheckout = () => {
+        const checkoutList = document.getElementById("checkout-items");
+        if (!checkoutList) return;
+
+        const emptyState = document.getElementById("checkout-empty");
+        const subtotalDisplay = document.getElementById("checkout-subtotal");
+        const shippingDisplay = document.getElementById("checkout-shipping");
+        const totalDisplay = document.getElementById("checkout-total");
+        const submitButton = document.getElementById("place-order");
+        const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+        const shipping = subtotal === 0 || subtotal >= 100000 ? 0 : 10000;
+        const formatRupiah = (amount) => `Rp ${amount.toLocaleString("id-ID")}`;
+
+        checkoutList.replaceChildren();
+        cartItems.forEach((item) => {
+            const row = document.createElement("article");
+            row.className = "checkout-item";
+
+            const image = document.createElement("img");
+            image.className = "checkout-item-image";
+            image.src = item.image || "";
+            image.alt = item.name;
+            image.loading = "lazy";
+            row.appendChild(image);
+
+            const details = document.createElement("div");
+            details.className = "checkout-item-details";
+            const title = document.createElement("h3");
+            title.textContent = item.name;
+            details.appendChild(title);
+
+            const options = item.options || {};
+            const optionText = [
+                options.spice,
+                ...(Array.isArray(options.addons) ? options.addons : []),
+                options.note ? `Catatan: ${options.note}` : ""
+            ].filter(Boolean).join(" · ");
+            if (optionText) {
+                const optionDescription = document.createElement("p");
+                optionDescription.className = "checkout-item-options";
+                optionDescription.textContent = optionText;
+                details.appendChild(optionDescription);
+            }
+
+            const unitPrice = document.createElement("strong");
+            unitPrice.className = "checkout-item-price";
+            unitPrice.textContent = formatRupiah(item.price);
+            details.appendChild(unitPrice);
+            row.appendChild(details);
+
+            const actions = document.createElement("div");
+            actions.className = "checkout-item-actions";
+            const quantityControls = document.createElement("div");
+            quantityControls.className = "checkout-quantity";
+
+            const decreaseButton = document.createElement("button");
+            decreaseButton.type = "button";
+            decreaseButton.dataset.cartAction = "decrease";
+            decreaseButton.dataset.cartId = item.id;
+            decreaseButton.setAttribute("aria-label", `Kurangi ${item.name}`);
+            decreaseButton.textContent = "-";
+            decreaseButton.disabled = item.quantity <= 1;
+
+            const quantity = document.createElement("span");
+            quantity.textContent = String(item.quantity);
+            quantity.setAttribute("aria-label", `Jumlah ${item.quantity}`);
+
+            const increaseButton = document.createElement("button");
+            increaseButton.type = "button";
+            increaseButton.dataset.cartAction = "increase";
+            increaseButton.dataset.cartId = item.id;
+            increaseButton.setAttribute("aria-label", `Tambah ${item.name}`);
+            increaseButton.textContent = "+";
+
+            quantityControls.append(decreaseButton, quantity, increaseButton);
+            actions.appendChild(quantityControls);
+
+            const removeButton = document.createElement("button");
+            removeButton.type = "button";
+            removeButton.className = "checkout-remove";
+            removeButton.dataset.cartAction = "remove";
+            removeButton.dataset.cartId = item.id;
+            removeButton.textContent = "Hapus";
+            actions.appendChild(removeButton);
+            row.appendChild(actions);
+            checkoutList.appendChild(row);
+        });
+
+        if (emptyState) emptyState.hidden = cartItems.length > 0;
+        if (subtotalDisplay) subtotalDisplay.textContent = formatRupiah(subtotal);
+        if (shippingDisplay) shippingDisplay.textContent = shipping ? formatRupiah(shipping) : "Gratis";
+        if (totalDisplay) totalDisplay.textContent = formatRupiah(subtotal + shipping);
+        if (submitButton) submitButton.disabled = cartItems.length === 0;
+    };
+
+    const saveCart = (nextCart) => {
+        try {
+            localStorage.setItem(cartStorageKey, JSON.stringify(nextCart));
+            localStorage.removeItem("tastehub-cart-count");
+            cartItems = nextCart;
+            updateCartBadge();
+            renderCheckout();
+            return true;
+        } catch (error) {
+            console.error("Gagal menyimpan keranjang ke localStorage.", error);
+            showToast("Keranjang gagal disimpan. Periksa penyimpanan browser.");
+            return false;
+        }
+    };
+
+    const addCartItem = (newItem) => {
+        const existingItem = cartItems.find((item) => item.id === newItem.id);
+        let nextCart;
+
+        if (existingItem) {
+            nextCart = cartItems.map((item) => item.id === newItem.id
+                ? { ...item, quantity: Math.min(item.quantity + newItem.quantity, 99) }
+                : item);
+        } else {
+            nextCart = [...cartItems, newItem];
+        }
+
+        return saveCart(nextCart);
+    };
+
+    cartItems = loadCart();
+    updateCartBadge();
+    renderCheckout();
+
+    window.addEventListener("storage", (event) => {
+        if (event.key === cartStorageKey) {
+            cartItems = loadCart();
+            updateCartBadge();
+            renderCheckout();
+        }
+    });
 
     // Filter dan Pencarian Produk
     const applyFilters = () => {
@@ -154,10 +319,60 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const checkoutItems = document.getElementById("checkout-items");
+    if (checkoutItems) {
+        checkoutItems.addEventListener("click", (event) => {
+            const actionButton = event.target.closest("button[data-cart-action]");
+            if (!actionButton) return;
+
+            const { cartAction, cartId } = actionButton.dataset;
+            const selectedItem = cartItems.find((item) => item.id === cartId);
+            if (!selectedItem) return;
+
+            if (cartAction === "remove") {
+                saveCart(cartItems.filter((item) => item.id !== cartId));
+                return;
+            }
+
+            if (cartAction === "increase") {
+                saveCart(cartItems.map((item) => item.id === cartId
+                    ? { ...item, quantity: Math.min(item.quantity + 1, 99) }
+                    : item));
+            } else if (cartAction === "decrease" && selectedItem.quantity > 1) {
+                saveCart(cartItems.map((item) => item.id === cartId
+                    ? { ...item, quantity: item.quantity - 1 }
+                    : item));
+            }
+        });
+    }
+
+    const checkoutForm = document.getElementById("checkout-form");
+    if (checkoutForm) {
+        checkoutForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            if (cartItems.length === 0) return;
+
+            const orderNumber = `TH-${String(Date.now()).slice(-6)}`;
+            const orderNumberDisplay = document.getElementById("order-number");
+            const successMessage = document.getElementById("order-success");
+
+            if (!saveCart([])) return;
+            checkoutForm.reset();
+            if (orderNumberDisplay) orderNumberDisplay.textContent = orderNumber;
+            if (successMessage) {
+                successMessage.hidden = false;
+                successMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+            showToast(`Pesanan ${orderNumber} berhasil dicatat.`);
+        });
+    }
+
     document.querySelectorAll(".favorite-button").forEach((button) => {
         button.addEventListener("click", () => {
             const isFavorite = button.getAttribute("aria-pressed") !== "true";
-            const dishTitle = button.closest(".product-card").querySelector("h3").textContent;
+            const product = button.closest(".product-card, #detail-product");
+            const dishTitle = product.querySelector("h3")?.textContent.trim() ||
+                product.dataset.productName || "Menu pilihan";
             button.setAttribute("aria-pressed", String(isFavorite));
             button.setAttribute("aria-label", `${isFavorite ? "Hapus" : "Tambahkan"} ${dishTitle} ${isFavorite ? "dari" : "ke"} favorit`);
             button.innerHTML = `<i class="fa-${isFavorite ? "solid" : "regular"} fa-heart" aria-hidden="true"></i>`;
@@ -167,17 +382,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll(".add-button").forEach((button) => {
         button.addEventListener("click", () => {
-            itemCount += 1;
-            localStorage.setItem("tastehub-cart-count", String(itemCount));
-            if (cartCount) cartCount.textContent = String(itemCount);
-            if (cartButton) cartButton.setAttribute("aria-label", `Keranjang, ${itemCount} item`);
-            showToast(`${button.closest(".product-card").querySelector("h3").textContent} ditambahkan ke keranjang.`);
+            const card = button.closest(".product-card");
+            const title = card.querySelector("h3").textContent.trim();
+            const priceText = card.querySelector(".product-bottom strong").textContent;
+            const price = Number(card.dataset.price || priceText.replace(/\D/g, ""));
+            const image = card.querySelector(".product-image-wrap img");
+
+            if (!Number.isFinite(price) || price <= 0) {
+                showToast(`Harga ${title} tidak tersedia.`);
+                return;
+            }
+
+            const productId = title.toLocaleLowerCase("id")
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+            const wasAdded = addCartItem({
+                id: productId,
+                name: title,
+                price,
+                quantity: 1,
+                image: image ? image.src : "",
+                options: {}
+            });
+
+            if (wasAdded) showToast(`${title} ditambahkan ke keranjang.`);
         });
     });
 
     if (cartButton) {
         cartButton.addEventListener("click", () => {
-            showToast(itemCount ? `Ada ${itemCount} item di keranjangmu.` : "Keranjangmu masih kosong. Yuk, pilih menu favorit!");
+            if (window.location.pathname.toLocaleLowerCase("id").endsWith("/checkout.html")) {
+                document.getElementById("checkout-items")?.scrollIntoView({ behavior: "smooth" });
+                return;
+            }
+            window.location.href = "checkout.html";
         });
     }
 
@@ -287,14 +525,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 event.preventDefault();
                 const quantity = Number(qtyInput.value || 1);
                 const selectedSpice = customizeForm.querySelector('input[name="spice"]:checked')?.value || "Normal";
+                const selectedAddons = Array.from(addonCheckboxes)
+                    .filter((checkbox) => checkbox.checked);
+                const addonNames = selectedAddons.map((checkbox) => checkbox.value);
+                const addonPrice = selectedAddons.reduce((total, checkbox) =>
+                    total + Number(checkbox.dataset.addonPrice || 0), 0);
+                const noteInput = document.getElementById("order-notes");
+                const note = noteInput ? noteInput.value.trim() : "";
+                const options = {
+                    spice: selectedSpice,
+                    addons: addonNames,
+                    note
+                };
+                const productId = productName.toLocaleLowerCase("id")
+                    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                    .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+                const wasAdded = addCartItem({
+                    id: `${productId}|${JSON.stringify(options)}`,
+                    name: productName,
+                    price: basePrice + addonPrice,
+                    quantity,
+                    image: mainImage ? mainImage.src : "",
+                    options
+                });
 
-                itemCount += quantity;
-                localStorage.setItem("tastehub-cart-count", String(itemCount));
-
-                if (cartCount) cartCount.textContent = String(itemCount);
-                if (cartButton) cartButton.setAttribute("aria-label", `Keranjang, ${itemCount} item`);
-
-                showToast(`${quantity}x ${productName} (${selectedSpice}) berhasil masuk keranjang!`);
+                if (wasAdded) showToast(`${quantity}x ${productName} (${selectedSpice}) berhasil masuk keranjang!`);
             });
         }
 
@@ -344,4 +599,128 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+    // =========================================================================
+    // Logika Halaman Ulasan Pelanggan (ulasan.html)
+    // =========================================================================
+    const reviewFilterButtons = document.querySelectorAll("[data-review-filter]");
+    const reviewsGrid = document.getElementById("reviews-grid");
+    const reviewVisibleCount = document.getElementById("review-visible-count");
+    const starPickButtons = document.querySelectorAll(".star-pick-btn");
+    const selectedRatingInput = document.getElementById("selected-rating");
+    const submitReviewForm = document.getElementById("submit-review-form");
+
+    // Filter Kartu Ulasan
+    const filterReviews = (filterValue) => {
+        if (!reviewsGrid) return;
+        const cards = reviewsGrid.querySelectorAll(".wall-review-card");
+        let count = 0;
+
+        cards.forEach((card) => {
+            const tags = card.dataset.tags || "";
+            const isMatch = filterValue === "all" || tags.includes(filterValue);
+            card.hidden = !isMatch;
+            if (isMatch) count += 1;
+        });
+
+        if (reviewVisibleCount) {
+            reviewVisibleCount.textContent = String(count);
+        }
+    };
+
+    reviewFilterButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const filterValue = btn.dataset.reviewFilter;
+            reviewFilterButtons.forEach((b) => {
+                const isActive = b === btn;
+                b.classList.toggle("active", isActive);
+                b.setAttribute("aria-pressed", String(isActive));
+            });
+            filterReviews(filterValue);
+        });
+    });
+
+    // Tombol "Terbantu" (Helpful Vote)
+    if (reviewsGrid) {
+        reviewsGrid.addEventListener("click", (event) => {
+            const helpfulBtn = event.target.closest(".helpful-btn");
+            if (!helpfulBtn) return;
+
+            const isPressed = helpfulBtn.getAttribute("aria-pressed") === "true";
+            const countEl = helpfulBtn.querySelector(".helpful-count");
+            let currentCount = Number(countEl.textContent || 0);
+
+            helpfulBtn.setAttribute("aria-pressed", String(!isPressed));
+            currentCount = isPressed ? currentCount - 1 : currentCount + 1;
+            countEl.textContent = String(currentCount);
+        });
+    }
+
+    // Pemilih Bintang Interaktif pada Form
+    starPickButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const ratingValue = Number(btn.dataset.value || 5);
+            if (selectedRatingInput) selectedRatingInput.value = String(ratingValue);
+
+            starPickButtons.forEach((star) => {
+                const starVal = Number(star.dataset.value);
+                star.classList.toggle("active", starVal <= ratingValue);
+            });
+        });
+    });
+
+    // Submit Ulasan Baru & Tambahkan Langsung ke Grid
+    if (submitReviewForm && reviewsGrid) {
+        submitReviewForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const name = document.getElementById("reviewer-name").value.trim();
+            const menuSelect = document.getElementById("reviewed-menu");
+            const menuName = menuSelect.value;
+            const menuCat = menuSelect.options[menuSelect.selectedIndex].dataset.cat || "indonesia";
+            const rating = Number(selectedRatingInput.value || 5);
+            const comment = document.getElementById("review-comment").value.trim();
+
+            const newCard = document.createElement("article");
+            newCard.className = "wall-review-card";
+            newCard.dataset.tags = `${rating === 5 ? "5star " : ""}${menuCat}`;
+
+            newCard.innerHTML = `
+                <div class="wall-review-header">
+                    <div class="review-user">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces" alt="${name}">
+                        <div>
+                            <strong>${name} <span class="verified-check" title="Pembeli Terverifikasi"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span></strong>
+                            <small>Baru saja</small>
+                        </div>
+                    </div>
+                    <span class="product-rating"><i class="fa-solid fa-star" aria-hidden="true"></i> ${rating}.0</span>
+                </div>
+                <span class="reviewed-dish-tag"><i class="fa-solid fa-utensils" aria-hidden="true"></i> ${menuName}</span>
+                <p class="wall-review-text">“${comment}”</p>
+                <div class="wall-review-footer">
+                    <button class="helpful-btn" type="button" aria-pressed="false">
+                        <i class="fa-regular fa-thumbs-up" aria-hidden="true"></i>
+                        <span>Terbantu (<strong class="helpful-count">0</strong>)</span>
+                    </button>
+                </div>
+            `;
+
+            reviewsGrid.prepend(newCard);
+            submitReviewForm.reset();
+            starPickButtons.forEach((star) => star.classList.add("active"));
+            if (selectedRatingInput) selectedRatingInput.value = "5";
+
+            // Reset filter ke "Semua Ulasan" agar ulasan baru langsung terlihat
+            reviewFilterButtons.forEach((b) => {
+                const isAll = b.dataset.reviewFilter === "all";
+                b.classList.toggle("active", isAll);
+                b.setAttribute("aria-pressed", String(isAll));
+            });
+            filterReviews("all");
+
+            showToast("Terima kasih! Ulasanmu berhasil ditampilkan.");
+            document.getElementById("daftar-ulasan").scrollIntoView({ behavior: "smooth" });
+        });
+    }
 });

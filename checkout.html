@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8f6f1">
+    <meta name="description" content="Periksa keranjang dan selesaikan pesanan TasteHub.">
+    <title>Checkout — TasteHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html" aria-label="TasteHub, ke beranda">
+                <span class="brand-mark"><i class="fa-solid fa-utensils" aria-hidden="true"></i></span>
+                <span>Taste<span class="brand-accent">Hub</span></span>
+            </a>
+            <nav class="desktop-nav" aria-label="Navigasi utama">
+                <a class="nav-link" href="index.html">Beranda</a>
+                <a class="nav-link" href="menu.html">Menu</a>
+                <a class="nav-link" href="about.html">Tentang kami</a>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-button theme-toggle" type="button" aria-label="Aktifkan tema gelap">
+                    <i class="fa-regular fa-moon" aria-hidden="true"></i>
+                </button>
+                <button class="cart-button" type="button" aria-label="Keranjang, 0 item">
+                    <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+                    <span class="cart-label">Keranjang</span>
+                    <span class="cart-count" aria-live="polite">0</span>
+                </button>
+                <a class="button button-dark header-cta" href="menu.html">Tambah menu <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+            <button class="mobile-menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="mobile-menu">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav" id="mobile-menu" aria-label="Navigasi mobile" hidden>
+            <a href="index.html">Beranda</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">Tentang kami</a>
+            <a href="checkout.html" aria-current="page">Keranjang &amp; Checkout</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="checkout-page section-shell">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html">Beranda</a>
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                <a href="menu.html">Menu</a>
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                <span aria-current="page">Checkout</span>
+            </nav>
+            <div class="checkout-heading">
+                <p class="section-kicker">TINGGAL SELANGKAH LAGI</p>
+                <h1>Checkout <span>pesananmu.</span></h1>
+                <p>Periksa menu pilihanmu, lalu isi detail pengantaran.</p>
+            </div>
+
+            <section class="checkout-success" id="order-success" role="status" hidden>
+                <span class="checkout-success-icon"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+                <div>
+                    <h2>Pesanan berhasil dicatat!</h2>
+                    <p>Nomor pesananmu <strong id="order-number"></strong>. Ini adalah simulasi checkout lokal; pesanan belum dikirim ke server.</p>
+                    <a class="button button-dark" href="menu.html">Kembali memilih menu</a>
+                </div>
+            </section>
+
+            <form class="checkout-layout" id="checkout-form">
+                <div class="checkout-main-column">
+                    <section class="checkout-panel" aria-labelledby="cart-title">
+                        <div class="checkout-panel-heading">
+                            <div>
+                                <p class="section-kicker">PILIHANMU</p>
+                                <h2 id="cart-title">Isi keranjang</h2>
+                            </div>
+                            <a class="text-link" href="menu.html">Tambah menu <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="checkout-items" id="checkout-items" aria-live="polite"></div>
+                        <div class="checkout-empty" id="checkout-empty" hidden>
+                            <span class="empty-icon"><i class="fa-solid fa-basket-shopping" aria-hidden="true"></i></span>
+                            <h3>Keranjangmu masih kosong</h3>
+                            <p>Pilih menu favoritmu untuk mulai membuat pesanan.</p>
+                            <a class="button button-primary" href="menu.html">Jelajahi menu</a>
+                        </div>
+                    </section>
+
+                    <section class="checkout-panel customer-panel" aria-labelledby="customer-title">
+                        <div class="checkout-panel-heading">
+                            <div>
+                                <p class="section-kicker">INFO PENGANTARAN</p>
+                                <h2 id="customer-title">Data penerima</h2>
+                            </div>
+                        </div>
+                        <div class="checkout-fields">
+                            <div class="checkout-field">
+                                <label for="customer-name">Nama lengkap</label>
+                                <input id="customer-name" name="name" type="text" autocomplete="name" placeholder="Nama penerima" required>
+                            </div>
+                            <div class="checkout-field">
+                                <label for="customer-phone">Nomor telepon</label>
+                                <input id="customer-phone" name="phone" type="tel" autocomplete="tel" placeholder="08xxxxxxxxxx" required>
+                            </div>
+                            <div class="checkout-field checkout-field-full">
+                                <label for="customer-address">Alamat pengantaran</label>
+                                <textarea id="customer-address" name="address" rows="3" autocomplete="street-address" placeholder="Nama jalan, nomor rumah, kecamatan, kota" required></textarea>
+                            </div>
+                            <div class="checkout-field checkout-field-full">
+                                <label for="payment-method">Metode pembayaran</label>
+                                <select id="payment-method" name="payment" required>
+                                    <option value="">Pilih metode pembayaran</option>
+                                    <option value="cash">Bayar tunai saat pesanan tiba</option>
+                                    <option value="transfer">Transfer bank (simulasi)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <aside class="order-summary-panel" aria-labelledby="summary-title">
+                    <p class="section-kicker">RINGKASAN</p>
+                    <h2 id="summary-title">Total pesanan</h2>
+                    <div class="summary-row"><span>Subtotal menu</span><strong id="checkout-subtotal">Rp 0</strong></div>
+                    <div class="summary-row"><span>Ongkos kirim</span><strong id="checkout-shipping">Gratis</strong></div>
+                    <p class="shipping-hint">Gratis ongkir untuk subtotal minimal Rp 100.000.</p>
+                    <div class="summary-total"><span>Total pembayaran</span><strong id="checkout-total">Rp 0</strong></div>
+                    <button class="button button-primary checkout-submit" id="place-order" type="submit" disabled>
+                        Buat pesanan <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                    <p class="checkout-disclaimer"><i class="fa-solid fa-lock" aria-hidden="true"></i> Data hanya digunakan untuk simulasi checkout di halaman ini.</p>
+                </aside>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-main section-shell">
+            <div class="footer-brand-column">
+                <a class="brand footer-brand" href="index.html">
+                    <span class="brand-mark"><i class="fa-solid fa-utensils" aria-hidden="true"></i></span>
+                    <span>Taste<span class="brand-accent">Hub</span></span>
+                </a>
+                <p>Menghadirkan makanan enak dan momen bahagia, langsung ke depan pintumu.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Jelajahi</h3>
+                <a href="menu.html">Menu kami</a>
+                <a href="about.html">Tentang TasteHub</a>
+            </div>
+            <div class="footer-column">
+                <h3>Pesanan</h3>
+                <a href="checkout.html">Keranjang &amp; Checkout</a>
+                <a href="index.html">Beranda</a>
+            </div>
+        </div>
+        <div class="footer-bottom section-shell">
+            <span>© 2024 TasteHub. Dibuat dengan <i class="fa-solid fa-heart" aria-hidden="true"></i> untuk kamu.</span>
+            <span>Rasa bahagia, setiap hari.</span>
+        </div>
+    </footer>
+
+    <div class="toast-message" id="toast-message" role="status" aria-live="polite"></div>
+    <script src="js/script.js"></script>
+</body>
+</html>

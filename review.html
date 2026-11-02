@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8f6f1">
+    <meta name="description" content="Baca ulasan jujur dari ribuan pelanggan TasteHub. Lihat pengalaman mereka menikmati hidangan segar yang diantar hangat ke rumah.">
+    <title>Ulasan Pelanggan — TasteHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html" aria-label="TasteHub, ke beranda">
+                <span class="brand-mark"><i class="fa-solid fa-utensils" aria-hidden="true"></i></span>
+                <span>Taste<span class="brand-accent">Hub</span></span>
+            </a>
+
+            <nav class="desktop-nav" aria-label="Navigasi utama">
+                <a class="nav-link" href="index.html">Beranda</a>
+                <a class="nav-link" href="menu.html">Menu</a>
+                <a class="nav-link" href="about.html">Tentang kami</a>
+                <a class="nav-link active" href="ulasan.html">Ulasan</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-button theme-toggle" type="button" aria-label="Aktifkan tema gelap">
+                    <i class="fa-regular fa-moon" aria-hidden="true"></i>
+                </button>
+                <button class="cart-button" type="button" aria-label="Keranjang, 0 item">
+                    <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+                    <span class="cart-label">Keranjang</span>
+                    <span class="cart-count" aria-live="polite">0</span>
+                </button>
+                <a class="button button-dark header-cta" href="menu.html">Pesan sekarang <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+
+            <button class="mobile-menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="mobile-menu">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav" id="mobile-menu" aria-label="Navigasi mobile" hidden>
+            <a href="index.html">Beranda</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">Tentang kami</a>
+            <a href="ulasan.html">Ulasan</a>
+            <a href="menu.html">Pesan sekarang <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Header Halaman Ulasan & Ringkasan Rating -->
+        <section class="reviews-hero section-shell">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html">Beranda</a>
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                <span aria-current="page">Ulasan Pelanggan</span>
+            </nav>
+
+            <div class="reviews-hero-grid">
+                <div class="reviews-hero-copy">
+                    <div class="eyebrow"><span class="eyebrow-dot"></span> CERITA JUJUR PELANGGAN KAMI</div>
+                    <h1>Ribuan senyum di setiap <span>suapan.</span></h1>
+                    <p class="hero-description">Kepercayaanmu adalah bumbu rahasia terbaik kami. Lihat apa kata mereka yang sudah mencicipi hidangan hangat TasteHub, atau bagikan pengalaman makanmu hari ini.</p>
+                    <div class="about-cta-group">
+                        <a class="button button-primary" href="#tulis-ulasan"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Tulis ulasanmu</a>
+                        <a class="button button-outline" href="#daftar-ulasan">Lihat semua cerita</a>
+                    </div>
+                </div>
+
+                <!-- Kartu Ringkasan Statistik Rating -->
+                <div class="rating-summary-card">
+                    <div class="rating-score-col">
+                        <strong class="big-score">4.9</strong>
+                        <div class="review-stars" aria-label="Rating rata-rata 4.9 dari 5 bintang">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <span>Berdasarkan <strong>2.480+</strong> ulasan terverifikasi</span>
+                        <span class="recommend-badge"><i class="fa-solid fa-thumbs-up" aria-hidden="true"></i> 98% pelanggan merekomendasikan</span>
+                    </div>
+
+                    <div class="rating-bars-col" aria-label="Distribusi bintang ulasan">
+                        <div class="bar-row">
+                            <span>5 <i class="fa-solid fa-star" aria-hidden="true"></i></span>
+                            <div class="bar-track"><div class="bar-fill" style="width: 88%;"></div></div>
+                            <small>88%</small>
+                        </div>
+                        <div class="bar-row">
+                            <span>4 <i class="fa-solid fa-star" aria-hidden="true"></i></span>
+                            <div class="bar-track"><div class="bar-fill" style="width: 9%;"></div></div>
+                            <small>9%</small>
+                        </div>
+                        <div class="bar-row">
+                            <span>3 <i class="fa-solid fa-star" aria-hidden="true"></i></span>
+                            <div class="bar-track"><div class="bar-fill" style="width: 2%;"></div></div>
+                            <small>2%</small>
+                        </div>
+                        <div class="bar-row">
+                            <span>2 <i class="fa-solid fa-star" aria-hidden="true"></i></span>
+                            <div class="bar-track"><div class="bar-fill" style="width: 1%;"></div></div>
+                            <small>1%</small>
+                        </div>
+                        <div class="bar-row">
+                            <span>1 <i class="fa-solid fa-star" aria-hidden="true"></i></span>
+                            <div class="bar-track"><div class="bar-fill" style="width: 0%;"></div></div>
+                            <small>0%</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sorotan Ulasan Pilihan (Featured Testimonial) -->
+        <section class="testimonial-section section-shell">
+            <div class="testimonial-image">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&h=1000&fit=crop" alt="Pelanggan menikmati makanan bersama" loading="lazy">
+                <div class="testimonial-image-caption">
+                    <i class="fa-solid fa-quote-left" aria-hidden="true"></i>
+                    <span>Ulasan Favorit<br>Bulan Ini</span>
+                </div>
+            </div>
+            <div class="testimonial-copy">
+                <p class="section-kicker">SOROTAN PELANGGAN SETIA</p>
+                <h2>Bukan cuma soal kenyang, tapi <span>bikin bahagia.</span></h2>
+                <div class="review-stars" aria-label="5 dari 5 bintang">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <blockquote>“Sudah langganan katering makan siang kantor pakai TasteHub hampir setengah tahun. Pengirimannya selalu tepat waktu sebelum jam 12 siang, kemasannya rapi, dan Nasi Ayam Bakar Madunya selalu jadi rebutan teman-teman sekantor!”</blockquote>
+                <div class="review-author">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces" alt="Foto pelanggan, Nadia Putri" loading="lazy">
+                    <span><strong>Nadia Putri</strong><small>Pelanggan Setia • 42x Pemesanan</small></span>
+                    <span class="review-count"><strong>Verified</strong><small>Pembeli Asli</small></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daftar Semua Ulasan & Filter -->
+        <section class="all-reviews-section section-shell" id="daftar-ulasan">
+            <div class="section-heading">
+                <div>
+                    <p class="section-kicker">APA KATA MEREKA</p>
+                    <h2>Cerita dari <span>meja makan.</span></h2>
+                </div>
+                <p class="result-counter" aria-live="polite">Menampilkan <strong id="review-visible-count">6</strong> ulasan pilihan</p>
+            </div>
+
+            <!-- Filter Chip Ulasan -->
+            <div class="review-filter-bar" role="group" aria-label="Filter ulasan pelanggan">
+                <button class="filter-pill active" type="button" data-review-filter="all" aria-pressed="true">Semua Ulasan</button>
+                <button class="filter-pill" type="button" data-review-filter="5star" aria-pressed="false"><i class="fa-solid fa-star" aria-hidden="true"></i> Bintang 5</button>
+                <button class="filter-pill" type="button" data-review-filter="with-photo" aria-pressed="false"><i class="fa-regular fa-image" aria-hidden="true"></i> Dengan Foto</button>
+                <button class="filter-pill" type="button" data-review-filter="indonesia" aria-pressed="false">Menu Nusantara</button>
+                <button class="filter-pill" type="button" data-review-filter="western" aria-pressed="false">Western & Asian</button>
+                <button class="filter-pill" type="button" data-review-filter="dessert" aria-pressed="false">Dessert & Kopi</button>
+            </div>
+
+            <!-- Grid Kartu Ulasan -->
+            <div class="wall-reviews-grid" id="reviews-grid">
+                <!-- Ulasan 1 -->
+                <article class="wall-review-card" data-tags="5star with-photo indonesia">
+                    <div class="wall-review-header">
+                        <div class="review-user">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=faces" alt="Raka Pratama" loading="lazy">
+                            <div>
+                                <strong>Raka Pratama <span class="verified-check" title="Pembeli Terverifikasi"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span></strong>
+                                <small>2 hari lalu</small>
+                            </div>
+                        </div>
+                        <span class="product-rating"><i class="fa-solid fa-star" aria-hidden="true"></i> 5.0</span>
+                    </div>
+
+                    <span class="reviewed-dish-tag"><i class="fa-solid fa-utensils" aria-hidden="true"></i> Nasi Ayam Bakar Madu</span>
+                    <p class="wall-review-text">“Bumbu bakar madunya meresap sampai ke tulang! Sambal terasinya pedas segar, lalapannya juga masih kriuk banget pas sampai di rumah.”</p>
+
+                    <div class="review-photo-attachment">
+                        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&h=360&fit=crop" alt="Foto pesanan Nasi Ayam Bakar Madu dari pelanggan" loading="lazy">
+                    </div>
+
+                    <div class="wall-review-footer">
+                        <button class="helpful-btn" type="button" aria-pressed="false">
+                            <i class="fa-regular fa-thumbs-up" aria-hidden="true"></i>
+                            <span>Terbantu (<strong class="helpful-count">18</strong>)</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Ulasan 2 -->
+                <article class="wall-review-card" data-tags="5star western">
+                    <div class="wall-review-header">
+                        <div class="review-user">
+                            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&h=100&fit=crop&crop=faces" alt="Sinta Maharani" loading="lazy">
+                            <div>
+                                <strong>Sinta Maharani <span class="verified-check" title="Pembeli Terverifikasi"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span></strong>
+                                <small>4 hari lalu</small>
+                            </div>
+                        </div>
+                        <span class="product-rating"><i class="fa-solid fa-star" aria-hidden="true"></i> 5.0</span>
+                    </div>
+
+                    <span class="reviewed-dish-tag"><i class="fa-solid fa-utensils" aria-hidden="true"></i> Classic Beef Burger</span>
+                    <p class="wall-review-text">“Jarang-jarang pesan burger delivery yang rotinya nggak penyok dan patty dagingnya masih super juicy. Saus racikannya juara banget!”</p>
+
+                    <div class="wall-review-footer">
+                        <button class="helpful-btn" type="button" aria-pressed="false">
+                            <i class="fa-regular fa-thumbs-up" aria-hidden="true"></i>
+                            <span>Terbantu (<strong class="helpful-count">12</strong>)</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Ulasan 3 -->
+                <article class="wall-review-card" data-tags="5star with-photo dessert">
+                    <div class="wall-review-header">
+                        <div class="review-user">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop&crop=faces" alt="Amelinda Kusuma" loading="lazy">
+                            <div>
+                                <strong>Amelinda Kusuma <span class="verified-check" title="Pembeli Terverifikasi"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span></strong>
+                                <small>5 hari lalu</small>
+                            </div>
+                        </div>
+                        <span class="product-rating"><i class="fa-solid fa-star" aria-hidden="true"></i> 5.0</span>
+                    </div>
+
+                    <span class="reviewed-dish-tag"><i class="fa-solid fa-utensils" aria-hidden="true"></i> Chocolate Lava Cake & Kopi</span>
+                    <p class="wall-review-text">“Pas dibelah cokelatnya beneran meleleh! Manisnya pas, nggak bikin eneg. Cocok banget dipadukan sama Es Kopi Gula Aren buat teman kerja sore.”</p>
+
+                    <div class="review-photo-attachment">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&h=360&fit=crop" alt="Foto pesanan Chocolate Lava Cake dari pelanggan" loading="lazy">
+                    </div>
+
+                    <div class="wall-review-footer">
+                        <button class="helpful-btn" type="button" aria-pressed="false">
+                            <i class="fa-regular fa-thumbs-up" aria-hidden="true"></i>
+                            <span>Terbantu (<strong class="helpful-count">24</strong>)</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Ulasan 4 -->
+                <article class="wall-review-card" data-tags="western">
+                    <div class="wall-review-header">
+                        <div class="review-user">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces" alt="Dimas Anggara" loading="lazy">
+                            <div>
+                                <strong>Dimas Anggara <span class="verified-check" title="Pembeli Terverifikasi"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span></strong>
+                                <small>1 minggu lalu</small>
+                            </div>
+                        </div>
+                        <span class="product-rating"><i class="fa-solid fa-star" aria-hidden="true"></i> 4.8</span>
+                    </div>
+
+                    <span class="reviewed-dish-tag"><i class="fa-solid fa-utensils" aria-hidden="true"></i> Chicken Ramen</span>
+                    <p class="wall-review-text">“Kuah dan mie dipisah kemasannya, jadi pas sampai rumah mienya nggak mengembang. Kuah kaldunya gurih kental, telurnya juga setengah matang sempurna.”</p>
+
+                    <div class="wall-review-footer">
+                        <button class="helpful-btn" type="button" aria-pressed="false">
+                            <i class="fa-regular fa-thumbs-up" aria-hidden="true"></i>
+                            <span>Terbantu (<strong class="helpful-count">9</strong>)</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Ulasan 5 -->
+                <article class="wall-review-card" data-tags="5star with-photo indonesia">
+                    <div class="wall-review-header">
+                        <div class="review-user">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=faces" alt="Laras Wulandari" loading="lazy">
+                            <div>
+                                <strong>Laras Wulandari <span class="verified-check" title="Pembeli Terverifikasi"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span></strong>
+                                <small>1 minggu lalu</small>
+                            </div>
+                        </div>
+                        <span class="product-rating"><i class="fa-solid fa-star" aria-hidden="true"></i> 5.0</span>
+                    </div>
+
+                    <span class="reviewed-dish-tag"><i class="fa-solid fa-utensils" aria-hidden="true"></i> Sate Ayam Madura</span>
+                    <p class="wall-review-text">“Potongan daging ayamnya besar-besar dan tanpa lemak berlebih. Bumbu kacangnya halus, medok, dan wangi jeruk limau. Pasti bakal pesan lagi!”</p>
+
+                    <div class="review-photo-attachment">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&h=360&fit=crop" alt="Foto pesanan Sate Ayam Madura" loading="lazy">
+                    </div>
+
+                    <div class="wall-review-footer">
+                        <button class="helpful-btn" type="button" aria-pressed="false">
+                            <i class="fa-regular fa-thumbs-up" aria-hidden="true"></i>
+                            <span>Terbantu (<strong class="helpful-count">15</strong>)</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Ulasan 6 -->
+                <article class="wall-review-card" data-tags="5star western">
+                    <div class="wall-review-header">
+                        <div class="review-user">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=faces" alt="Bagas Setiawan" loading="lazy">
+                            <div>
+                                <strong>Bagas Setiawan <span class="verified-check" title="Pembeli Terverifikasi"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span></strong>
+                                <small>2 minggu lalu</small>
+                            </div>
+                        </div>
+                        <span class="product-rating"><i class="fa-solid fa-star" aria-hidden="true"></i> 5.0</span>
+                    </div>
+
+                    <span class="reviewed-dish-tag"><i class="fa-solid fa-utensils" aria-hidden="true"></i> Margherita Artisan Pizza</span>
+                    <p class="wall-review-text">“Adonan tipis renyah di pinggir tapi lembut di tengah. Keju mozzarellanya melimpah dan daun basilnya wangi segar. Pengiriman cuma 22 menit!”</p>
+
+                    <div class="wall-review-footer">
+                        <button class="helpful-btn" type="button" aria-pressed="false">
+                            <i class="fa-regular fa-thumbs-up" aria-hidden="true"></i>
+                            <span>Terbantu (<strong class="helpful-count">11</strong>)</span>
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Form Kirim Ulasan Baru -->
+        <section class="write-review-section section-shell" id="tulis-ulasan">
+            <div class="write-review-box">
+                <div class="write-review-copy">
+                    <p class="section-kicker">BAGIKAN CERITAMU</p>
+                    <h2>Baru saja makan <span>menu TasteHub?</span></h2>
+                    <p>Masukanmu sangat berarti bagi tim dapur dan kurir kami untuk terus menyajikan hidangan terbaik setiap harinya.</p>
+                    <div class="review-perks">
+                        <div class="perk-row">
+                            <span class="perk-icon"><i class="fa-solid fa-gift" aria-hidden="true"></i></span>
+                            <div>
+                                <strong>Dapatkan Voucher Diskon 10%</strong>
+                                <small>Untuk ulasan terpilih setiap minggunya</small>
+                            </div>
+                        </div>
+                        <div class="perk-row">
+                            <span class="perk-icon"><i class="fa-solid fa-heart" aria-hidden="true"></i></span>
+                            <div>
+                                <strong>Apresiasi Langsung ke Chef</strong>
+                                <small>Setiap ulasan diteruskan ke tim dapur kami</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="review-form-card" id="submit-review-form">
+                    <h3>Tulis Ulasan Pelanggan</h3>
+
+                    <div class="form-field">
+                        <label for="reviewer-name">Nama Lengkap</label>
+                        <input id="reviewer-name" type="text" placeholder="Contoh: Budi Santoso" required>
+                    </div>
+
+                    <div class="form-row-2">
+                        <div class="form-field">
+                            <label for="reviewed-menu">Menu yang Dipesan</label>
+                            <select id="reviewed-menu" required>
+                                <option value="Nasi Ayam Bakar Madu" data-cat="indonesia">Nasi Ayam Bakar Madu</option>
+                                <option value="Classic Beef Burger" data-cat="western">Classic Beef Burger</option>
+                                <option value="Chicken Ramen" data-cat="western">Chicken Ramen</option>
+                                <option value="Chocolate Lava Cake" data-cat="dessert">Chocolate Lava Cake</option>
+                                <option value="Sate Ayam Madura" data-cat="indonesia">Sate Ayam Madura</option>
+                                <option value="Es Kopi Gula Aren" data-cat="dessert">Es Kopi Gula Aren</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <span class="field-label">Rating Bintang</span>
+                            <div class="star-picker" id="star-picker" role="radiogroup" aria-label="Pilih rating bintang">
+                                <button type="button" class="star-pick-btn active" data-value="1" aria-label="1 bintang"><i class="fa-solid fa-star"></i></button>
+                                <button type="button" class="star-pick-btn active" data-value="2" aria-label="2 bintang"><i class="fa-solid fa-star"></i></button>
+                                <button type="button" class="star-pick-btn active" data-value="3" aria-label="3 bintang"><i class="fa-solid fa-star"></i></button>
+                                <button type="button" class="star-pick-btn active" data-value="4" aria-label="4 bintang"><i class="fa-solid fa-star"></i></button>
+                                <button type="button" class="star-pick-btn active" data-value="5" aria-label="5 bintang"><i class="fa-solid fa-star"></i></button>
+                            </div>
+                            <input type="hidden" id="selected-rating" value="5">
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="review-comment">Ceritakan Pengalamanmu</label>
+                        <textarea id="review-comment" rows="3" placeholder="Bagaimana rasa makanannya, porsinya, dan kecepatan pengirimannya?" required></textarea>
+                    </div>
+
+                    <button class="button button-primary review-submit-btn" type="submit">
+                        <span>Kirim Ulasan Sekarang</span>
+                        <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-main section-shell">
+            <div class="footer-brand-column">
+                <a class="brand footer-brand" href="index.html">
+                    <span class="brand-mark"><i class="fa-solid fa-utensils" aria-hidden="true"></i></span>
+                    <span>Taste<span class="brand-accent">Hub</span></span>
+                </a>
+                <p>Menghadirkan makanan enak dan momen bahagia, langsung ke depan pintumu.</p>
+                <div class="social-links">
+                    <a href="index.html" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="index.html" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="index.html" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Jelajahi</h3>
+                <a href="menu.html">Menu kami</a>
+                <a href="about.html">Tentang TasteHub</a>
+                <a href="ulasan.html">Ulasan pelanggan</a>
+            </div>
+            <div class="footer-column">
+                <h3>Bantuan</h3>
+                <a href="about.html#faq">Cara pemesanan</a>
+                <a href="about.html#faq">FAQ</a>
+                <a href="about.html#faq">Hubungi kami</a>
+            </div>
+            <div class="footer-column newsletter-column">
+                <h3>Info yang bikin happy</h3>
+                <p>Promo dan menu baru, langsung di inbox kamu.</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <label class="sr-only" for="newsletter-email">Alamat email</label>
+                    <input id="newsletter-email" type="email" placeholder="Email kamu" required>
+                    <button type="submit" aria-label="Daftar newsletter"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom section-shell">
+            <span>© 2024 TasteHub. Dibuat dengan <i class="fa-solid fa-heart" aria-hidden="true"></i> untuk kamu.</span>
+            <span>Rasa bahagia, setiap hari.</span>
+        </div>
+    </footer>
+
+    <div class="toast-message" id="toast-message" role="status" aria-live="polite"></div>
+    <script src="js/script.js"></script>
+</body>
+</html>
