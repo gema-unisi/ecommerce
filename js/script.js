@@ -601,7 +601,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // =========================================================================
-    // Logika Halaman Ulasan Pelanggan (ulasan.html)
+    // Logika Halaman Ulasan Pelanggan (review.html)
     // =========================================================================
     const reviewFilterButtons = document.querySelectorAll("[data-review-filter]");
     const reviewsGrid = document.getElementById("reviews-grid");
